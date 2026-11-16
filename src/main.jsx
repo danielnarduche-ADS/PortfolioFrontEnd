@@ -10,7 +10,9 @@ const router = createBrowserRouter([
     path: '/',
     element: <Home />,
   },
-])
+], {
+  basename: import.meta.env.BASE_URL,
+})
 
 
 createRoot(document.getElementById('root')).render(
