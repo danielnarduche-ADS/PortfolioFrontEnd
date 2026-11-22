@@ -2,8 +2,7 @@ import { useState } from "react";
 import MenuHeader from "../../components/menuHeader.jsx";
 
 const steps = [
-    { key: "fullname", label: "Full Name", type: "text", autoComplete: "name" },
-    { key: "username", label: "Username", type: "text", autoComplete: "username" },
+    { key: "fullName", label: "Name", type: "text", autoComplete: "fullName" },
     { key: "email", label: "Email", type: "email", autoComplete: "email" },
     { key: "password", label: "Password", type: "password", autoComplete: "new-password" },
 ];
@@ -11,8 +10,7 @@ const steps = [
 export default function SignUp() {
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState({
-        fullname: "",
-        username: "",
+        fullName: "",
         email: "",
         password: "",
     });
