@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
+
 const MenuHeader = () => {
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
@@ -44,7 +45,7 @@ const MenuHeader = () => {
         <nav className="md:ml-auto">
             <ul className="flex flex-row-reverse gap-3 md:gap-8">
                 <li><Link to="/login" className="bg-blue-600 text-white p-2 md:p-4">Login</Link></li>
-                <li><Link to="/signup" className="font-semibold hover:text-blue-600">SignUp</Link></li>
+                <li><Link to="/sign-up" className="font-semibold hover:text-blue-600">SignUp</Link></li>
                 <li><Link to="/features" className="hover:text-blue-600">Features</Link></li>
                 <li><a href="https://github.com/danielnarduche-ADS" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">GitHub</a></li>
             </ul>
