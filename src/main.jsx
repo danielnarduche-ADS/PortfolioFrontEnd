@@ -5,7 +5,8 @@ import { RouterProvider } from "react-router/dom";
 import './index.css'
 
 import Home from './pages/home'
-import SignUp from './pages/signUp'
+import AuthorizationSignUp from './pages/authSignUp.jsx';
+import AuthorizationLogin from './pages/authLogin.jsx';
 
 const router = createBrowserRouter([
   {
@@ -13,12 +14,16 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/log-in',
-    element: <div>Login Page</div>,
+    path: '/home',
+    element: <Home />,
   },
   {
-    path: '/sign-up',
-    element: <SignUp />,
+    path: '/authorization/login',
+    element: <AuthorizationLogin />,
+  },
+  {
+    path: '/authorization/sign-up',
+    element: <AuthorizationSignUp />,
   }
 ], {
   basename: import.meta.env.BASE_URL,

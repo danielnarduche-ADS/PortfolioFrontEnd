@@ -1,9 +1,36 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
 
+const MenuHeaderPageAuth = ({ authState }) => {
+  const { pathname } = useLocation();
+
+  if (authState === "default" && "/authorization" !== pathname) {
+    return (
+      <>
+        <li><Link to="/authorization/login" state={{ authState: "logIn" }} className="bg-blue-600 text-white p-2 md:p-4">Login</Link></li>
+        <li><Link to="/authorization/sign-up" state={{ authState: "signUp" }} className="font-semibold hover:text-blue-600">SignUp</Link></li>
+      </>
+    )
+  } else if (authState === "logIn") {
+    return (
+      <>
+        <li><Link to="/authorization/sign-up" state={{ authState: "signUp" }} className="bg-blue-600 text-white p-2 md:p-4">SignUp</Link></li>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <li><Link to="/authorization/login" state={{ authState: "logIn" }} className="bg-blue-600 text-white p-2 md:p-4">Login</Link></li>
+    </>
+  )
+}
+
 const MenuHeader = () => {
+  const { state } = useLocation();
+  const authState = state?.authState ?? "default";
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
   const previousScrollY = useRef(0);
@@ -40,12 +67,11 @@ const MenuHeader = () => {
       aria-hidden={!isVisible}
       inert={!isVisible}
     >
-        <h1 className="font-sans font-bold text-3xl md:text-4xl"><span className="text-blue-600">Dans</span>Velopment</h1>
+        <h1 className="font-sans font-bold text-3xl md:text-4xl"><span className="text-blue-600"><Link to="/">Dans</Link></span>Velopment</h1>
 
         <nav className="md:ml-auto">
             <ul className="flex flex-row-reverse gap-3 md:gap-8">
-                <li><Link to="/login" className="bg-blue-600 text-white p-2 md:p-4">Login</Link></li>
-                <li><Link to="/sign-up" className="font-semibold hover:text-blue-600">SignUp</Link></li>
+                <MenuHeaderPageAuth authState={authState} />
                 <li><Link to="/features" className="hover:text-blue-600">Features</Link></li>
                 <li><a href="https://github.com/danielnarduche-ADS" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">GitHub</a></li>
             </ul>

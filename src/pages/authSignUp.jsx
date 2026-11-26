@@ -9,11 +9,12 @@ const passwordSchema = z
         confirmPassword: z.string(),
     })
     .refine(({ password, confirmPassword }) => password === confirmPassword, {
-        message: "As senhas não coincidem.",
+        message: "Passwords do not match.",
         path: ["confirmPassword"],
     });
 
-export default function SignUp() {
+
+export default function AuthorizationSignUp() {
     const shouldReduceMotion = useReducedMotion();
     const [passwordError, setPasswordError] = useState("");
 
@@ -45,13 +46,13 @@ export default function SignUp() {
                     transition={{ duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" }}
                 >
                     <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">SignUp</h1>
-                    <p className="mt-1 text-sm text-slate-600">Dados de contato</p>
+                    <p className="mt-1 text-sm text-slate-600">Create your account</p>
 
-                    <form action="/enviar" method="post" className="mt-10" onSubmit={handleSubmit}>
+                    <form action="/auth-signUp" method="post" className="mt-10" onSubmit={handleSubmit}>
                         <fieldset className="flex w-full flex-col gap-10 text-left">
-                            <legend className="sr-only">Dados de contato</legend>
+                            <legend className="sr-only">Account details</legend>
                             <div className="border-b-2 border-gray-300 transition-colors duration-200 focus-within:border-blue-600 motion-reduce:transition-none">
-                                <label htmlFor="nome" className="sr-only">Nome</label>
+                                <label htmlFor="nome" className="sr-only">Name</label>
                                 <input
                                     type="text"
                                     id="nome"
@@ -73,7 +74,7 @@ export default function SignUp() {
                                 />
                             </div>
                             <div className="border-b-2 border-gray-300 transition-colors duration-200 focus-within:border-blue-600 motion-reduce:transition-none">
-                                <label htmlFor="password" className="sr-only">Senha</label>
+                                <label htmlFor="password" className="sr-only">Password</label>
                                 <input
                                     type="password"
                                     id="password"
@@ -86,7 +87,7 @@ export default function SignUp() {
                             </div>
                             <div>
                                 <div className="border-b-2 border-gray-300 transition-colors duration-200 focus-within:border-blue-600 motion-reduce:transition-none">
-                                    <label htmlFor="confirmPassword" className="sr-only">Confirmar senha</label>
+                                    <label htmlFor="confirmPassword" className="sr-only">Confirm password</label>
                                     <input
                                         type="password"
                                         id="confirmPassword"
@@ -106,8 +107,8 @@ export default function SignUp() {
                                 )}
                             </div>
                             <div className="flex items-center justify-between px-1 py-1">
-                                <span className="text-sm font-medium text-slate-600">Assunto</span>
-                                <p className="text-sm font-semibold text-blue-700">Dúvida</p>
+                                <span className="text-sm font-medium text-slate-600">Subject</span>
+                                <p className="text-sm font-semibold text-blue-700">Question</p>
                             </div>
                             </fieldset>
                             <motion.button
@@ -116,7 +117,7 @@ export default function SignUp() {
                                 whileHover={shouldReduceMotion ? undefined : { y: -2 }}
                                 whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                             >
-                                Enviar
+                                Submit
                             </motion.button>
                     </form>
                 </motion.section>
